@@ -1,0 +1,128 @@
+---
+title: "IPBES Monitoring assessment - Chapter 1, 2, 3, 4 - Snowball"
+subtitle: "version 1.0; last update: 23.02.2025"
+---
+
+```{r,echo=FALSE, warning=FALSE, message=FALSE}
+#load packages
+Sys.setenv(openalexR.message = "suppressed")
+library(openalexR)
+library(jsonlite)
+library(DT)
+library(dplyr)
+library(RefManageR)
+library(httr)
+library(devtools)
+library(IPBES.R)
+library(tibble)
+
+```
+
+# Summary: Expanding Key Knowledge of Authors
+
+## Overview
+
+This report presents a structured methodology for compiling a comprehensive literature corpus by tracing networks of cited knowledge. This method offers a significant advantage over conventional keyword-based searches. First, keyword searches can generate an overwhelming volume of literature, often including irrelevant entries that match search terms by coincidence (e.g., literature abbreviations or proper names that resemble the search term). Second, relying solely on predefined search terms may exclude critical publications due to variations in terminology. In contrast, the network-based approach presented here dynamically expands the corpus based on citation relationships, ensuring an up-to-date collection that incorporates follow-up studies and referenced historical findings. The final corpus provided here comprises both the initial key references and an extended selection of interlinked publications, offering a curated and contextually relevant resource of knowledge.
+
+## Contacts
+
+The literature corpus was developed through a collaboration between the Monitoring Assessment TSU and the Data and Knowledge TSU.
+
+-   For content-related inquiries, please contact the Monitoring Assessment TSU (To: Cristina Sciortino, Mail: cristina.sciortino2\@mcgill.ca); cc Cassia Foley, Mail: cassia.foley\@mcgill.ca).
+
+-   For technical issues, please contact the Data and Knowledge TSU (To: Jessica Hetzer *jessica.hetzer\@senckenberg.de*; cc Rainer M. Krug, Mail: rainer\@krugs.de; cc Aidin Niamir aidin.niamir\@senckenberg.de).
+
+# Workflow
+
+## Step 1: Initial Collection and Metadata Enrichment
+
+The process begins with a set of key references provided by the Monitoring Assessment experts, which are enriched with metadata retrieved from OpenAlex, an extensive open-access literature database. The collection is structured according to chapters, and duplicates within each chapter are removed.
+
+```{r}
+source("R/match_oaID_by_title_or_doi.R")
+source("R/load_refs_from_zoteroCollection.R")
+
+#Chapter 1
+match_oaID_by_title_or_doi(1)
+
+#Chapter 2
+match_oaID_by_title_or_doi(2)
+
+#Chapter 3
+match_oaID_by_title_or_doi(3)
+
+#Chapter 4
+match_oaID_by_title_or_doi(4)
+
+#Overarching suggestions by co-chairs
+match_oaID_by_title_or_doi(5)
+```
+
+## Step 2: Network-Based Expansion (Snowballing)
+
+Additional relevant publications are identified per chapter using a network-based expansion method. This process, known as snowballing, employs the `oa_snowball()` function from the R package openalexR, systematically linking related works to the initial reference set.
+
+```{r}
+source("R/generate_oa_snowball.R")
+#Chapter 1
+generate_oa_snowball(1)
+
+#Chapter 2
+generate_oa_snowball(2)
+
+#Chapter 3
+generate_oa_snowball(3)
+
+#Chapter 4
+generate_oa_snowball(4)
+
+#Overarching suggestions by co-chairs
+generate_oa_snowball(5)
+```
+
+## Step 3: Structured Storage and Accessibility
+
+The compiled corpus and its metadata are stored in an \*.rds files alongside the report. The following tables display the most relevant metadata, including the DOI, title, and the typical (author, year) citation format. The interactive browsing interface enables searching and filtering of the literature. It also allows users to download the (filtered) metadata of the corpus, for instance, as .csv or .xlsx files.
+
+### Expanded Literature Network: Chapter 1
+
+```{r}
+source("R/create_IPBESR_tabledt.R")
+create_IPBESR_tabledt(1)
+```
+
+### **Expanded Literature Network: Chapter 2**
+
+```{r}
+source("R/create_IPBESR_tabledt.R")
+create_IPBESR_tabledt(2)
+```
+
+### **Expanded Literature Network: Chapter 3**
+
+```{r}
+source("R/create_IPBESR_tabledt.R")
+create_IPBESR_tabledt(3)
+```
+
+### **Expanded Literature Network: Chapter 4**
+
+```{r}
+source("R/create_IPBESR_tabledt.R")
+create_IPBESR_tabledt(4)
+```
+
+### **Expanded Literature Network: Overarching suggestions by co-chairs**
+
+```{r}
+source("R/create_IPBESR_tabledt.R")
+create_IPBESR_tabledt(4)
+```
+
+### **Expanded Literature Network:** all chapters including co-chair suggestions
+
+```{r}
+source("R/combine_and_remove_duplicates.R")
+combine_and_remove_duplicates()
+
+```
