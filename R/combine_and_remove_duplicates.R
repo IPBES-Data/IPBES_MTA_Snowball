@@ -44,7 +44,13 @@ combine_and_remove_duplicates<-function(){
   
   
   
-  Combined_table|> rename(
+  Combined_table <- Combined_table |>
+    mutate(
+      id = sprintf('<a href="https://openalex.org/%s" target="_blank">%s</a>', id, id),
+      doi = sprintf('<a href="%s" target="_blank">%s</a>', doi, gsub("https://doi.org/", "", doi))
+    ) 
+  
+  Combined_table |> rename(
     year = publication_year,
     journal = so
   ) |>

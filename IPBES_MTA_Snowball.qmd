@@ -91,35 +91,35 @@ source("R/create_IPBESR_tabledt.R")
 create_IPBESR_tabledt(1)
 ```
 
-### **Expanded Literature Network: Chapter 2**
+### Expanded Literature Network: Chapter 2
 
 ```{r}
 source("R/create_IPBESR_tabledt.R")
 create_IPBESR_tabledt(2)
 ```
 
-### **Expanded Literature Network: Chapter 3**
+### Expanded Literature Network: Chapter 3
 
 ```{r}
 source("R/create_IPBESR_tabledt.R")
 create_IPBESR_tabledt(3)
 ```
 
-### **Expanded Literature Network: Chapter 4**
+### Expanded Literature Network: Chapter 4
 
 ```{r}
 source("R/create_IPBESR_tabledt.R")
 create_IPBESR_tabledt(4)
 ```
 
-### **Expanded Literature Network: Overarching suggestions by co-chairs**
+### Expanded Literature Network: Overarching suggestions by co-chairs
 
 ```{r}
 source("R/create_IPBESR_tabledt.R")
 create_IPBESR_tabledt(4)
 ```
 
-### **Expanded Literature Network:** all chapters including co-chair suggestions
+### Expanded Literature Network: all chapters including co-chair suggestions
 
 ```{r}
 source("R/combine_and_remove_duplicates.R")
