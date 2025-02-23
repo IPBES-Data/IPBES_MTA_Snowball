@@ -34,6 +34,19 @@ The literature corpus was developed through a collaboration between the Monitori
 
 # Workflow
 
+## Step 0: Download Preprocessed Data and Input Folder Files
+
+This workflow demands significant computational resources and a reliable network connection. To reduce runtime or to replicate the precise state of OpenAlex for a specific date (as reflected in the date component of the \*.rds files), you can bypass extensive processing by directly downloading the input and data folders from Zenodo. Simply run the Bash script `download_input_and_data_zenodo.sh` to retrieve these files. Before executing the R code, ensure that you have a Bash environment installed (for example, Git Bash on Windows).
+
+```{r, eval=FALSE}
+
+# Run the script, capturing both stdout and stderr
+output <- system2("bash", "download_input_and_data_zenodo.sh", stdout = TRUE, stderr = TRUE)
+
+# Print the captured output
+cat(output, sep = "\n")
+```
+
 ## Step 1: Initial Collection and Metadata Enrichment
 
 The process begins with a set of key references provided by the Monitoring Assessment experts, which are enriched with metadata retrieved from OpenAlex, an extensive open-access literature database. The collection is structured according to chapters, and duplicates within each chapter are removed.
