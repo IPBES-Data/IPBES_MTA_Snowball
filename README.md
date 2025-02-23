@@ -17,6 +17,25 @@ For technical issues, please contact the IPBES Data and Knowledge TSU (To: Jessi
 -   **Chapter**: Chapter 1-4 ( including overarching Chapter)
 -   **Short Name**: `IPBES_MTA_Snowball` Please always include `IPBES_MTA_Snowball` in the title of the email to make sure it gets filtered correctly.
 
+## Folder Structure
+
+```plaintext
+IPBES_MTA_Snowball/
+├── IPBES_MTA_Snowball.qmd
+├── IPBES_MTA_Snowball.html   # (pre-compiled; re-run only if needed)
+├── R/
+├── input/
+│   ├── 1_chapter/
+│   ├── 2_chapter/
+|   ...
+│   └── 5_chapter/
+└── data/
+    ├── 1_chapter/
+    ├── 2_chapter/
+    ...
+    └── 5_chapter/
+```
+
 ## Reports
 
 -   [IPBES Monotoring Assesment Snowball - Version 1.0](https://ipbes-data.github.io/IPBES_MTA_Snowball/IPBES_MTA_Snowball.html)
